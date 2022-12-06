@@ -32,21 +32,34 @@ public class MoodAnalyzer {
 		// System.out.println("Mood is: " + mood2);
 
 		// Refactor: the code to use param-constructor to call and getting output
-		// TC1.1: Given “I am in Sad Mood” message Should Return SAD
+		// Refactor TC1.1: Given “I am in Sad Mood” message Should Return SAD
 		MoodAnalyzer analyzer = new MoodAnalyzer("This is SAD Message");
 		System.out.println(analyzer.analyseMood());
 
-		// TC1.2: Given “I am in Any Mood” message Should Return HAPPY
+		// Refactor TC1.2: Given “I am in Any Mood” message Should Return HAPPY
 		MoodAnalyzer analyzer1 = new MoodAnalyzer("This is ANY Message");
 		System.out.println(analyzer1.analyseMood());
+
+		// UC2:Handle Exception if User Provides Invalid Mood
+		// TC 2.1: Given Null Mood Should Return Happy
+		MoodAnalyzer nullAnalyzer = new MoodAnalyzer(null);
+		System.out.println(nullAnalyzer.analyseMood());
 	}
 
 	public String analyseMood() {
-		if (message.toUpperCase().contains(("SAD"))) {
-			return "SAD";
-		} else {
+		// Handling exception as if the user passed null
+		// then we will catch the exception in catch block and program will not
+		// terminate
+		try {
+			if (message.toUpperCase().contains(("SAD"))) {
+				return "SAD";
+			} else {
+				return "HAPPY";
+			}
+		} catch (NullPointerException e) {
 			return "HAPPY";
 		}
+
 	}
 
 }

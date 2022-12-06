@@ -39,5 +39,15 @@ public class MoodAnalyzerTest {
 		expectedMood = expectedMood.toUpperCase();
 		Assert.assertNotEquals(expectedMood, analyzerTest.analyseMood());
 	}
+	
+	//UC2: Given Null Mood Should Return Happy
+	@Test
+	public void testAnalysisMood5() {
+		MoodAnalyzer analyzerTest = new MoodAnalyzer(null);
+		String expectedMood = "HAPPY";
+		expectedMood = expectedMood.toUpperCase();
+		Assert.assertEquals(expectedMood, analyzerTest.analyseMood());
+	}
+
 
 }
