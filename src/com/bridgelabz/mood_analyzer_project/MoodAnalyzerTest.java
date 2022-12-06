@@ -39,8 +39,8 @@ public class MoodAnalyzerTest {
 		expectedMood = expectedMood.toUpperCase();
 		Assert.assertNotEquals(expectedMood, analyzerTest.analyseMood());
 	}
-	
-	//UC2: Given Null Mood Should Return Happy
+
+	// UC2: Given Null Mood Should Return Happy
 	@Test
 	public void testAnalysisMood5() {
 		MoodAnalyzer analyzerTest = new MoodAnalyzer(null);
@@ -49,5 +49,43 @@ public class MoodAnalyzerTest {
 		Assert.assertEquals(expectedMood, analyzerTest.analyseMood());
 	}
 
+//	UC3: Handling custom exception and passing the test case
+	@Test
+	public void testAnalysisMood6() {
+		MoodAnalyzer analyzerTest = new MoodAnalyzer(null);
+		String expectedMood = "SAD";
+		expectedMood = expectedMood.toUpperCase();
+		try {
+			Assert.assertEquals(expectedMood, analyzerTest.analyseMood());
+		} catch (MoodAnalysisException e) {
+			expectedMood = "Sad";
+			expectedMood = expectedMood.toUpperCase();
+			try {
+				Assert.assertEquals(expectedMood, analyzerTest.analyseMood());
+			} catch (MoodAnalysisException e1) {
+				System.out.println("Handled Custom exception sucessfully!");
+			}
+			System.out.println("Handled Custom exception sucessfully!");
+		}
+	}
+
+	@Test
+	public void testAnalysisMood7() {
+		MoodAnalyzer analyzerTest = new MoodAnalyzer("");
+		String expectedMood = "SAD";
+		expectedMood = expectedMood.toUpperCase();
+		try {
+			Assert.assertEquals(expectedMood, analyzerTest.analyseMood());
+		} catch (MoodAnalysisException e) {
+			expectedMood = "Sad";
+			expectedMood = expectedMood.toUpperCase();
+			try {
+				Assert.assertEquals(expectedMood, analyzerTest.analyseMood());
+			} catch (MoodAnalysisException e1) {
+				System.out.println("Handled Custom exception sucessfully!");
+			}
+			System.out.println("Handled Custom exception sucessfully!");
+		}
+	}
 
 }
